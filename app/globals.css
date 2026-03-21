@@ -1,21 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a2e;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  background: #fff;
+  color: #0d0d0d;
+}
+
+.font-bebas { font-family: var(--font-bebas) !important; }
+
+.text-stroke {
+  -webkit-text-stroke: 3px #0d0d0d;
+}
+
+.text-stroke-sm {
+  -webkit-text-stroke: 2px #0d0d0d;
+}
+
+.sunray {
+  background: repeating-conic-gradient(
+    #F7731E 0deg 10deg,
+    #FF8C2A 10deg 20deg
+  );
+}
+
+.btn-bold {
+  display: inline-block;
+  background: #FFD600;
+  color: #0d0d0d;
+  font-family: var(--font-bebas);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 2rem;
+  border: 3px solid #0d0d0d;
+  box-shadow: 4px 4px 0px #0d0d0d;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.btn-bold:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #0d0d0d;
+}
+
+.btn-bold-white {
+  display: inline-block;
+  background: #fff;
+  color: #0d0d0d;
+  font-family: var(--font-bebas);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 2rem;
+  border: 3px solid #0d0d0d;
+  box-shadow: 4px 4px 0px #0d0d0d;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.btn-bold-white:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #0d0d0d;
+}
+
+.card-bold {
+  border: 3px solid #0d0d0d;
+  box-shadow: 5px 5px 0px #0d0d0d;
 }
