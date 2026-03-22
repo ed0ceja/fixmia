@@ -2,7 +2,6 @@
 
 export const runtime = 'edge';
 
-import Image from "next/image";
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
@@ -128,8 +127,8 @@ export default function Home() {
       <nav className="bg-[#0d0d0d] px-6 py-3 border-b-4 border-[#FFD600] grid grid-cols-3 items-center">
         {/* Left: logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0">
-            <Image src="/logo.jpeg" alt="FixMia Logo" fill className="object-cover scale-[2.35] object-center" />
+          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+            <img src="/logo.jpeg" alt="FixMia Logo" className="w-full h-full object-cover scale-[2.35] object-center" />
           </div>
           <span className="font-bebas text-white text-2xl tracking-widest">FIXMIA</span>
         </div>
@@ -158,8 +157,8 @@ export default function Home() {
       <section className="relative overflow-hidden bg-[#FF6B35] border-b-4 border-[#0d0d0d]">
         <div className="absolute inset-0 sunray opacity-30 pointer-events-none" />
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-16 flex flex-col items-center text-center">
-          <div className="w-36 h-36 rounded-full overflow-hidden relative flex-shrink-0 border-4 border-[#0d0d0d] shadow-[6px_6px_0px_#0d0d0d] mb-6">
-            <Image src="/logo.jpeg" alt="FixMia Logo" fill className="object-cover scale-[2.35] object-center" />
+          <div className="w-36 h-36 rounded-full overflow-hidden flex-shrink-0 border-4 border-[#0d0d0d] shadow-[6px_6px_0px_#0d0d0d] mb-6">
+            <img src="/logo.jpeg" alt="FixMia Logo" className="w-full h-full object-cover scale-[2.35] object-center" />
           </div>
           <h1 className="font-bebas text-[7rem] md:text-[10rem] leading-none text-white text-stroke tracking-tight mb-2">
             FIXMIA
@@ -252,8 +251,8 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-[#0d0d0d] text-white py-8 px-6 text-center border-t-4 border-[#FFD600]">
         <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded-full overflow-hidden relative flex-shrink-0">
-            <Image src="/logo.jpeg" alt="FixMia Logo" fill className="object-cover scale-[2.35] object-center" />
+          <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <img src="/logo.jpeg" alt="FixMia Logo" className="w-full h-full object-cover scale-[2.35] object-center" />
           </div>
           <span className="font-bebas text-2xl tracking-widest">FIXMIA</span>
         </div>
