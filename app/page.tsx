@@ -122,15 +122,15 @@ export default function Home() {
     <main className="min-h-screen bg-white text-[#0d0d0d]">
 
       {/* NAV */}
-      <nav className="bg-[#0d0d0d] px-6 py-3 border-b-4 border-[#FFD600] grid grid-cols-3 items-center">
+      <nav className="bg-[#0d0d0d] px-4 py-3 border-b-4 border-[#FFD600] flex items-center justify-between">
         {/* Left: logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
             <img src="/logo.jpeg" alt="FixMia Logo" className="w-full h-full object-cover scale-[2.35] object-center" />
           </div>
           <span className="font-bebas text-white text-2xl tracking-widest">FIXMIA</span>
         </div>
-        {/* Center: nav links */}
+        {/* Center: nav links (desktop only) */}
         <div className="hidden md:flex items-center justify-center gap-6">
           <a href="#services" className="font-bebas text-white text-lg tracking-widest hover:text-[#FFD600] transition-colors">{t.nav.services}</a>
           <a href="#how-it-works" className="font-bebas text-white text-lg tracking-widest hover:text-[#FFD600] transition-colors">{t.nav.howItWorks}</a>
@@ -138,14 +138,14 @@ export default function Home() {
           <a href="#contact" className="font-bebas text-white text-lg tracking-widest hover:text-[#FFD600] transition-colors">{t.nav.contact}</a>
         </div>
         {/* Right: language toggle + book */}
-        <div className="flex items-center gap-3 justify-end">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={() => setLang(lang === "en" ? "es" : "en")}
-            className="font-bebas text-lg tracking-widest px-3 py-1 border-2 border-[#FFD600] text-[#FFD600] hover:bg-[#FFD600] hover:text-[#0d0d0d] transition-colors"
+            className="font-bebas text-base tracking-widest px-2 py-1 border-2 border-[#FFD600] text-[#FFD600] hover:bg-[#FFD600] hover:text-[#0d0d0d] transition-colors"
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-bold text-base py-2 px-4">
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="font-bebas bg-[#FFD600] text-[#0d0d0d] text-sm md:text-base tracking-widest px-3 py-2 border-2 border-[#0d0d0d] md:border-3 shadow-[3px_3px_0px_#FFD600] hover:translate-x-[1px] hover:translate-y-[1px] transition-transform whitespace-nowrap">
             {t.nav.book}
           </a>
         </div>
