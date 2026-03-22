@@ -1,7 +1,5 @@
 'use client'
 
-export const runtime = 'edge';
-
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
