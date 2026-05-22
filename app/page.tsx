@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const FORM_URL = "https://fixmia.vercel.app/contact"; // update once Vercel gives you the final URL
+const FORM_URL = "https://fixmia-33ul.vercel.app";
 
 const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
 const CONTACT_EMAIL = "hello@fixmia.com";
