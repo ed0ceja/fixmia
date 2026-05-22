@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 
-const WEB3FORMS_KEY = "e7e1095f-254e-450c-ae81-635234863e8c";
+const FORM_URL = "https://fixmia.vercel.app/contact"; // update once Vercel gives you the final URL
 
 const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
 const CONTACT_EMAIL = "hello@fixmia.com";
@@ -54,16 +54,7 @@ const content = {
       title: "HIT US UP",
       sub: "Ready to fix it? We respond within the hour.",
       whatsapp: "WhatsApp Us",
-      email: "Email Us",
-      form: {
-        name: "Your Name",
-        email: "Your Email",
-        device: "What device needs fixing?",
-        message: "Describe the issue",
-        submit: "SEND IT",
-        success: "Got it! We'll hit you back within the hour.",
-        error: "Something went wrong. Try again or WhatsApp us.",
-      },
+      form: "Request a Pickup",
     },
     footer: "WE FIX IT. PERIOD.",
   },
@@ -111,16 +102,7 @@ const content = {
       title: "ESCRÍBENOS",
       sub: "¿Listo para arreglarlo? Respondemos en menos de una hora.",
       whatsapp: "WhatsApp",
-      email: "Correo Electrónico",
-      form: {
-        name: "Tu Nombre",
-        email: "Tu Correo",
-        device: "¿Qué dispositivo necesita reparación?",
-        message: "Describe el problema",
-        submit: "ENVIAR",
-        success: "¡Recibido! Te respondemos en menos de una hora.",
-        error: "Algo salió mal. Inténtalo de nuevo o escríbenos por WhatsApp.",
-      },
+      form: "Solicitar un Recogido",
     },
     footer: "LO ARREGLAMOS. PUNTO.",
   },
@@ -138,32 +120,6 @@ export default function Home() {
   const t = content[lang];
   const whatsappLink = lang === "en" ? WHATSAPP_URL : WHATSAPP_URL_ES;
 
-  const [formState, setFormState] = useState({ name: "", email: "", device: "", message: "" });
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setFormStatus("loading");
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          ...formState,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormStatus("success");
-        setFormState({ name: "", email: "", device: "", message: "" });
-      } else {
-        setFormStatus("error");
-      }
-    } catch {
-      setFormStatus("error");
-    }
-  }
 
   return (
     <main className="min-h-screen bg-white text-[#0d0d0d]">
@@ -281,59 +237,11 @@ export default function Home() {
       <section id="contact" className="py-16 px-6 bg-[#FFD600] border-t-4 border-[#0d0d0d]">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="font-bebas text-6xl md:text-7xl mb-2 tracking-wide">{t.contact.title}</h2>
-          <p className="text-[#0d0d0d] mb-8 text-lg font-medium">{t.contact.sub}</p>
-
-          {formStatus === "success" ? (
-            <div className="card-bold bg-[#0d0d0d] text-[#FFD600] p-8 font-bebas text-2xl tracking-wide mb-6">
-              {t.contact.form.success}
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left mb-6">
-              <input
-                type="text"
-                placeholder={t.contact.form.name}
-                required
-                value={formState.name}
-                onChange={e => setFormState(s => ({ ...s, name: e.target.value }))}
-                className="w-full border-3 border-[#0d0d0d] px-4 py-3 font-medium bg-white text-[#0d0d0d] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0d0d0d]"
-              />
-              <input
-                type="email"
-                placeholder={t.contact.form.email}
-                required
-                value={formState.email}
-                onChange={e => setFormState(s => ({ ...s, email: e.target.value }))}
-                className="w-full border-3 border-[#0d0d0d] px-4 py-3 font-medium bg-white text-[#0d0d0d] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0d0d0d]"
-              />
-              <input
-                type="text"
-                placeholder={t.contact.form.device}
-                required
-                value={formState.device}
-                onChange={e => setFormState(s => ({ ...s, device: e.target.value }))}
-                className="w-full border-3 border-[#0d0d0d] px-4 py-3 font-medium bg-white text-[#0d0d0d] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0d0d0d]"
-              />
-              <textarea
-                placeholder={t.contact.form.message}
-                rows={4}
-                value={formState.message}
-                onChange={e => setFormState(s => ({ ...s, message: e.target.value }))}
-                className="w-full border-3 border-[#0d0d0d] px-4 py-3 font-medium bg-white text-[#0d0d0d] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0d0d0d] resize-none"
-              />
-              {formStatus === "error" && (
-                <p className="text-[#0d0d0d] font-medium text-sm">{t.contact.form.error}</p>
-              )}
-              <button
-                type="submit"
-                disabled={formStatus === "loading"}
-                className="btn-bold text-xl disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {formStatus === "loading" ? "..." : t.contact.form.submit}
-              </button>
-            </form>
-          )}
-
+          <p className="text-[#0d0d0d] mb-10 text-lg font-medium">{t.contact.sub}</p>
           <div className="flex flex-col gap-4">
+            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-bold text-2xl">
+              {t.contact.form}
+            </a>
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-bold-white text-2xl">
               {t.contact.whatsapp}
             </a>
