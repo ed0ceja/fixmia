@@ -6,3 +6,15 @@ main = ".open-next/worker.js"
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
+
+# --- WhatsApp click counter (see app/wa/route.ts + app/stats/page.tsx) ---
+# The buttons already work without this; KV just turns on the /stats counter.
+# One-time setup:
+#   1) npx wrangler kv namespace create CLICKS
+#   2) paste the returned id below and UNCOMMENT these 3 lines
+#   3) npx wrangler secret put STATS_TOKEN   (choose a password for /stats)
+#   4) npm run cf:deploy
+#
+# [[kv_namespaces]]
+# binding = "CLICKS"
+# id = "PASTE_KV_NAMESPACE_ID_HERE"

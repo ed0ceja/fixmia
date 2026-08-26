@@ -3,7 +3,10 @@
 import { useState, FormEvent } from "react";
 
 const WEB3FORMS_KEY = "e7e1095f-254e-450c-ae81-635234863e8c";
-const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
+
+// WhatsApp links route through our /wa endpoint so clicks get counted
+// (see app/wa/route.ts and the private /stats page) before redirecting.
+const waLink = (lang: "en" | "es", src: string) => `/wa?lang=${lang}&src=${src}`;
 
 const content = {
   en: {
@@ -49,7 +52,6 @@ const content = {
 export default function ContactPage() {
   const [lang, setLang] = useState<"en" | "es">("en");
   const t = content[lang];
-  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi!%20I'd%20like%20to%20book%20a%20pickup.`;
 
   const [form, setForm] = useState({ name: "", email: "", phone: "", device: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -108,9 +110,7 @@ export default function ContactPage() {
               <p className="text-white text-lg mb-8">{t.success.body}</p>
               <p className="text-gray-400 text-sm mb-4">{t.success.whatsapp}</p>
               <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={waLink(lang, "contact_success")}
                 className="btn-bold text-xl"
               >
                 WhatsApp
@@ -168,9 +168,7 @@ export default function ContactPage() {
               </button>
               <div className="text-center mt-2">
                 <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={waLink(lang, "contact_form")}
                   className="font-bebas text-lg tracking-widest text-[#0d0d0d] underline underline-offset-4 hover:text-[#FF6B35] transition-colors"
                 >
                   {t.whatsapp}
