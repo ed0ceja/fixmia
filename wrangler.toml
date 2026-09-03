@@ -1,4 +1,4 @@
-name = "fixmia01"
+name = "fixmia02"
 compatibility_date = "2024-12-30"
 compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
