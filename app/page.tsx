@@ -4,10 +4,11 @@ import { useState } from "react";
 
 const FORM_URL = "https://fixmia-33ul.vercel.app";
 
-const WHATSAPP_NUMBER = "YOUR_WHATSAPP_NUMBER";
-const CONTACT_EMAIL = "hello@fixmia.com";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi!%20I'd%20like%20to%20book%20a%20pickup%20for%20my%20device.`;
-const WHATSAPP_URL_ES = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola!%20Quiero%20reservar%20un%20recogido%20para%20mi%20dispositivo.`;
+// WhatsApp buttons route through our own /wa endpoint so each click can be
+// counted (see app/wa/route.ts and the private /stats page) before it
+// redirects to the WhatsApp chat. The phone number lives server-side in the
+// route, never on the page.
+const waLink = (lang: "en" | "es", src: string) => `/wa?lang=${lang}&src=${src}`;
 
 const content = {
   en: {
@@ -118,7 +119,6 @@ const areas = ["Downtown Miami", "Miami Beach", "Hialeah", "Coral Gables", "Dora
 export default function Home() {
   const [lang, setLang] = useState<"en" | "es">("en");
   const t = content[lang];
-  const whatsappLink = lang === "en" ? WHATSAPP_URL : WHATSAPP_URL_ES;
 
 
   return (
@@ -148,7 +148,7 @@ export default function Home() {
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="font-bebas bg-[#FFD600] text-[#0d0d0d] text-sm md:text-base tracking-widest px-3 py-2 border-2 border-[#0d0d0d] md:border-3 shadow-[3px_3px_0px_#FFD600] hover:translate-x-[1px] hover:translate-y-[1px] transition-transform whitespace-nowrap">
+          <a href={waLink(lang, "nav")} className="font-bebas bg-[#FFD600] text-[#0d0d0d] text-sm md:text-base tracking-widest px-3 py-2 border-2 border-[#0d0d0d] md:border-3 shadow-[3px_3px_0px_#FFD600] hover:translate-x-[1px] hover:translate-y-[1px] transition-transform whitespace-nowrap">
             {t.nav.book}
           </a>
         </div>
@@ -171,7 +171,7 @@ export default function Home() {
             {t.hero.desc}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center mt-10">
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-bold text-xl">
+            <a href={waLink(lang, "hero")} className="btn-bold text-xl">
               📲 {t.hero.cta1}
             </a>
             <a href="#services" className="btn-bold-white text-xl">
@@ -211,7 +211,7 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-bold text-xl">
+            <a href={waLink(lang, "how")} className="btn-bold text-xl">
               {t.howItWorks.cta}
             </a>
           </div>
@@ -242,7 +242,7 @@ export default function Home() {
             <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-bold text-2xl">
               {t.contact.form}
             </a>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="btn-bold-white text-2xl">
+            <a href={waLink(lang, "contact")} className="btn-bold-white text-2xl">
               {t.contact.whatsapp}
             </a>
           </div>
