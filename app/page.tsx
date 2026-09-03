@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-const FORM_URL = "https://fixmia-33ul.vercel.app";
-
 // WhatsApp buttons route through our own /wa endpoint so each click can be
 // counted (see app/wa/route.ts and the private /stats page) before it
 // redirects to the WhatsApp chat. The phone number lives server-side in the
@@ -55,7 +53,6 @@ const content = {
       title: "HIT US UP",
       sub: "Ready to fix it? We respond within the hour.",
       whatsapp: "WhatsApp Us",
-      form: "Request a Pickup",
     },
     footer: "WE FIX IT. PERIOD.",
   },
@@ -103,7 +100,6 @@ const content = {
       title: "ESCRÍBENOS",
       sub: "¿Listo para arreglarlo? Respondemos en menos de una hora.",
       whatsapp: "WhatsApp",
-      form: "Solicitar un Recogido",
     },
     footer: "LO ARREGLAMOS. PUNTO.",
   },
@@ -239,9 +235,6 @@ export default function Home() {
           <h2 className="font-bebas text-6xl md:text-7xl mb-2 tracking-wide">{t.contact.title}</h2>
           <p className="text-[#0d0d0d] mb-10 text-lg font-medium">{t.contact.sub}</p>
           <div className="flex flex-col gap-4">
-            <a href={FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-bold text-2xl">
-              {t.contact.form}
-            </a>
             <a href={waLink(lang, "contact")} className="btn-bold-white text-2xl">
               {t.contact.whatsapp}
             </a>
